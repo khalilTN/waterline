@@ -23,7 +23,7 @@ describe('Criterias', function() {
       }
     };
     it('should be merged', function(done){
-      var criteria = mergeCriterias(source, destination);
+      var criteria = mergeCriterias(destination, source);
       assert(criteria.where.like.attr1 === 'val1','key should be conserved if not exists in destination');
       assert(criteria.where.like.attr2 === 'val22','key should be overriden if exists in destination');
       assert(criteria.where.like.attr3 === 'val3', 'key should be added if not exists in source');
@@ -40,7 +40,7 @@ describe('Criterias', function() {
     var source = {sort : {key1 : 'asc', key2 : 'asc'}};
     var destination = {sort : {key3 : 'desc', key2 : 'desc'}};
     it('should be merged', function(done){
-      var criteria = mergeCriterias(source, destination);
+      var criteria = mergeCriterias(destination, source);
       assert(criteria.sort.key1 === 'asc', 'should conserve sort keys if not specified in destination');
       assert(criteria.sort.key2 === 'desc', 'should override sort keys if specified in destination');
       assert(criteria.sort.key3 === 'desc', 'should add new sort keys specified in destination');
@@ -53,7 +53,7 @@ describe('Criterias', function() {
   it('should override select and groupBy clauses',function(done){
     var source = {select : ['key1', 'key2'], groupBy : ['group1']};
     var destination = {select : ['key3', 'key4'], groupBy : ['group2']};
-    var criteria = mergeCriterias(source, destination);
+    var criteria = mergeCriterias(destination, source);
     assert(criteria.select[0] === 'key3' && criteria.select[1] === 'key4' && criteria.groupBy[0] === 'group2');
     done();
   });
@@ -61,7 +61,7 @@ describe('Criterias', function() {
    it('should overide limit and skip',function(done){
     var source = {limit : 1, skip : 1};
     var destination = {limit : 2, skip :2};
-    var criteria = mergeCriterias(source, destination);
+    var criteria = mergeCriterias(destination, source);
     assert(criteria.limit === 2 && criteria.skip === 2);
     done();
   });

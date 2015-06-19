@@ -1,7 +1,6 @@
 var Waterline = require('../../../lib/waterline'),
         assert = require('assert'),
-        async = require('async'),
-        WLValidationError = require('../../../lib/waterline/error/WLValidationError');
+        async = require('async');
 
 var waterline = new Waterline();
 var migrate = 'drop';
