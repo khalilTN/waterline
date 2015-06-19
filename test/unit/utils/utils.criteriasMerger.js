@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var assert = require('assert');
-var mergeCriterias = require('../../../lib/waterline/utils/criteriasMerger');
+var mergeCriterias = require('../../../lib/waterline/utils/mergeCriterias');
 describe('Criterias', function() {
   describe('Where Clause', function() {
     var source = {where: {
