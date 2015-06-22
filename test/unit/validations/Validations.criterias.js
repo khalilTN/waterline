@@ -26,7 +26,8 @@ describe('Criterias Valdiation', function () {
           "collection": "Animal",
           "via": "person",
           criteria: {
-            where: {legsNumber: 4}
+            where: {legsNumber: 4},
+            legsNumber: 4// default value
           }
         }
       }
@@ -64,7 +65,8 @@ describe('Criterias Valdiation', function () {
       tableName: 'clover_table',
       migrate: migrate,
       criteria: {
-        "where": {"leafNumber": 3}
+        "where": {"leafNumber": 3},
+        "leafNumber": 3 // default value
       },
       attributes: {
         "cloverId": {
@@ -145,7 +147,7 @@ describe('Criterias Valdiation', function () {
   });
   
   it('should add default value specified in model criteria to attribute if resolved to undefined', function (done) {
-    CloverModel.create({cloverId: 2, clovertName: 'clover with default value'}).exec(function (err, record) {
+    CloverModel.create({cloverId: 2, clovertName: 'clover with default value'}).exec(function (err) {
       assert(!err, 'Validation should succeed');
       done();
     });
@@ -157,7 +159,7 @@ describe('Criterias Valdiation', function () {
       {animalId: 9, animalColor: 'Blue', animalAge: 3}
     ];
 
-    PersonModel.create({personId: 4, personName: 'Jacques', sheeps: sheeps}, function (err, record) {
+    PersonModel.create({personId: 4, personName: 'Jacques', sheeps: sheeps}, function (err) {
       assert(!err, 'Validation should succeed');
       done();
     });
