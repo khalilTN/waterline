@@ -146,7 +146,6 @@ describe('Criterias Valdiation', function () {
   
   it('should add default value specified in model criteria to attribute if resolved to undefined', function (done) {
     CloverModel.create({cloverId: 2, clovertName: 'clover with default value'}).exec(function (err, record) {
-      console.log('##', require('util').inspect(record, {depth : null, colors : true }));
       assert(!err, 'Validation should succeed');
       done();
     });
