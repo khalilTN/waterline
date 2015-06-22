@@ -143,5 +143,25 @@ describe('Criterias Valdiation', function () {
       });
     });
   });
+  
+  it('should add default value specified in model criteria to attribute if resolved to undefined', function (done) {
+    CloverModel.create({cloverId: 2, clovertName: 'clover with default value'}).exec(function (err, record) {
+      console.log('##', require('util').inspect(record, {depth : null, colors : true }));
+      assert(!err, 'Validation should succeed');
+      done();
+    });
+  });
+  
+  it('should add default value specified in association criteria to attribute if resolved to undefined', function (done) {
+    var sheeps = [
+      {animalId: 8, animalColor: 'Red', animalAge: 2},
+      {animalId: 9, animalColor: 'Blue', animalAge: 3}
+    ];
+
+    PersonModel.create({personId: 4, personName: 'Jacques', sheeps: sheeps}, function (err, record) {
+      assert(!err, 'Validation should succeed');
+      done();
+    });
+  });
 
 });
